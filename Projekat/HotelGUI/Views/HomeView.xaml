@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="HotelGUI.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HotelGUI.Views"
+             xmlns:vml="clr-namespace:HotelGUI.VML"
+             vml:ViewModelLocator.AutoHookedUpViewModel="True"
+             mc:Ignorable="d" 
+             d:DesignHeight="420" d:DesignWidth="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="300"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <ComboBox Grid.Row="1" Grid.Column="1" Width="150" Height="20" HorizontalAlignment="Left" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                  ItemsSource="{Binding TableList}" SelectedItem="{Binding TableListItem}"/>
+
+        <DataGrid Name="dataGrid" Grid.Row="2" Grid.Column="1" Width="680" ItemsSource="{Binding Table}" SelectedItem="{Binding Tuple}"
+                  AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" SelectionMode="Single"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding ValidationError}" Foreground="Red"/>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Orientation="Horizontal">
+            <TextBlock Width="20"/>
+            <Button Width="70" Height="35" HorizontalAlignment="Left" Foreground="White" Background="#FF1C7BDA" Command="{Binding NavCommand}" CommandParameter="dodaj">Dodaj</Button>
+            <TextBlock Width="20"/>
+            <Button Width="70" Height="35" HorizontalAlignment="Left" Foreground="White" Background="#FF1C7BDA" Command="{Binding NavCommand}" CommandParameter="modifikuj">Modifikuj</Button>
+            <TextBlock Width="20"/>
+            <Button Width="70" Height="35" HorizontalAlignment="Left" Foreground="White" Background="#FF1C7BDA" Command="{Binding NavCommand}" CommandParameter="obrisi">Obrisi</Button>
+            <TextBlock Width="200"/>
+            <Button Width="70" Height="35" HorizontalAlignment="Left" Foreground="White" Background="#FF1C7BDA" Command="{Binding NavCommand}" CommandParameter="procedura">Procedura</Button>
+            <TextBlock Width="20"/>
+            <Button Width="70" Height="35" HorizontalAlignment="Left" Foreground="White" Background="#FF1C7BDA" Command="{Binding NavCommand}" CommandParameter="funkcija">Funkcija</Button>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>

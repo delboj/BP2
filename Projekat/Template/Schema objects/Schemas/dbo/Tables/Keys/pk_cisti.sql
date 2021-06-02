@@ -1,0 +1,1 @@
+ALTER TABLE Cisti ADD constraint cisti_pk PRIMARY KEY (Spremacica_JMBGRadnika, Soba_Broj, Soba_IDHotel)

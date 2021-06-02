@@ -1,0 +1,1036 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="E31032014ProjekatModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Jmbg" />
+          </Key>
+          <Property Name="Jmbg" Type="int" Nullable="false" />
+          <Property Name="Ime" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prezime" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="cisti">
+          <Key>
+            <PropertyRef Name="spremacica_jmbgradnika" />
+            <PropertyRef Name="soba_broj" />
+            <PropertyRef Name="soba_idhotel" />
+          </Key>
+          <Property Name="spremacica_jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="soba_broj" Type="int" Nullable="false" />
+          <Property Name="soba_idhotel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="drzi">
+          <Key>
+            <PropertyRef Name="hotel_idhotel" />
+            <PropertyRef Name="vlasnik_mbr" />
+          </Key>
+          <Property Name="hotel_idhotel" Type="int" Nullable="false" />
+          <Property Name="vlasnik_mbr" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gost">
+          <Key>
+            <PropertyRef Name="jmbg" />
+          </Key>
+          <Property Name="jmbg" Type="int" Nullable="false" />
+          <Property Name="ime_gosta" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime_gosta" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="hotel">
+          <Key>
+            <PropertyRef Name="idhotel" />
+          </Key>
+          <Property Name="idhotel" Type="int" Nullable="false" />
+          <Property Name="naziv" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="mesto" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="izdaje">
+          <Key>
+            <PropertyRef Name="recepcionar_jmbgradnika" />
+            <PropertyRef Name="odseda_gost_jmbg" />
+            <PropertyRef Name="odseda_broj" />
+            <PropertyRef Name="odseda_idhotel" />
+          </Key>
+          <Property Name="recepcionar_jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="odseda_gost_jmbg" Type="int" Nullable="false" />
+          <Property Name="odseda_broj" Type="int" Nullable="false" />
+          <Property Name="odseda_idhotel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="konobar">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="restoran_idrest" Type="int" />
+          <Property Name="godine_iskustva" Type="int" />
+        </EntityType>
+        <EntityType Name="menadzer">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="tip" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="odgovara">
+          <Key>
+            <PropertyRef Name="drzi_hotel_idhotel" />
+            <PropertyRef Name="drzi_mbr" />
+            <PropertyRef Name="menadzer_jmbgradnika" />
+          </Key>
+          <Property Name="drzi_hotel_idhotel" Type="int" Nullable="false" />
+          <Property Name="drzi_mbr" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="menadzer_jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="odseda">
+          <Key>
+            <PropertyRef Name="gost_jmbg" />
+            <PropertyRef Name="soba_broj" />
+            <PropertyRef Name="soba_hotel_idhotel" />
+          </Key>
+          <Property Name="gost_jmbg" Type="int" Nullable="false" />
+          <Property Name="soba_broj" Type="int" Nullable="false" />
+          <Property Name="soba_hotel_idhotel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="radi">
+          <Key>
+            <PropertyRef Name="hotel_idhotel" />
+            <PropertyRef Name="radnik_jmbgradnika" />
+          </Key>
+          <Property Name="hotel_idhotel" Type="int" Nullable="false" />
+          <Property Name="radnik_jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="radnik">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ime_radnika" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime_radnika" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="recepcionar">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ima_racunar" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="restoran">
+          <Key>
+            <PropertyRef Name="idrest" />
+          </Key>
+          <Property Name="idrest" Type="int" Nullable="false" />
+          <Property Name="nazivrestorana" Type="varchar" MaxLength="30" />
+          <Property Name="hotel_idhotel" Type="int" />
+        </EntityType>
+        <EntityType Name="soba">
+          <Key>
+            <PropertyRef Name="broj" />
+            <PropertyRef Name="hotel_idhotel" />
+          </Key>
+          <Property Name="broj" Type="int" Nullable="false" />
+          <Property Name="sprat" Type="int" />
+          <Property Name="hotel_idhotel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="spremacica">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ima_opremu" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vlasnik">
+          <Key>
+            <PropertyRef Name="mbr" />
+          </Key>
+          <Property Name="mbr" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ime_vlasnika" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="prezime_vlasnika" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <Association Name="cisti_soba_fk">
+          <End Role="soba" Type="Self.soba" Multiplicity="1" />
+          <End Role="cisti" Type="Self.cisti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soba">
+              <PropertyRef Name="broj" />
+              <PropertyRef Name="hotel_idhotel" />
+            </Principal>
+            <Dependent Role="cisti">
+              <PropertyRef Name="soba_broj" />
+              <PropertyRef Name="soba_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cisti_spremacica_fk">
+          <End Role="spremacica" Type="Self.spremacica" Multiplicity="1" />
+          <End Role="cisti" Type="Self.cisti" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spremacica">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="cisti">
+              <PropertyRef Name="spremacica_jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="drzi_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="1" />
+          <End Role="drzi" Type="Self.drzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="drzi">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="drzi_vlasnik_fk">
+          <End Role="vlasnik" Type="Self.vlasnik" Multiplicity="1" />
+          <End Role="drzi" Type="Self.drzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vlasnik">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="drzi">
+              <PropertyRef Name="vlasnik_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="izdaje_odseda_fk">
+          <End Role="odseda" Type="Self.odseda" Multiplicity="1" />
+          <End Role="izdaje" Type="Self.izdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="odseda">
+              <PropertyRef Name="gost_jmbg" />
+              <PropertyRef Name="soba_broj" />
+              <PropertyRef Name="soba_hotel_idhotel" />
+            </Principal>
+            <Dependent Role="izdaje">
+              <PropertyRef Name="odseda_gost_jmbg" />
+              <PropertyRef Name="odseda_broj" />
+              <PropertyRef Name="odseda_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="izdaje_recepcionar_fk">
+          <End Role="recepcionar" Type="Self.recepcionar" Multiplicity="1" />
+          <End Role="izdaje" Type="Self.izdaje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="recepcionar">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="izdaje">
+              <PropertyRef Name="recepcionar_jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="konobar_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="konobar" Type="Self.konobar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="konobar">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="konobar_restoran_fk">
+          <End Role="restoran" Type="Self.restoran" Multiplicity="0..1" />
+          <End Role="konobar" Type="Self.konobar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restoran">
+              <PropertyRef Name="idrest" />
+            </Principal>
+            <Dependent Role="konobar">
+              <PropertyRef Name="restoran_idrest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="menadzer_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="menadzer" Type="Self.menadzer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="menadzer">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odgovara_drzi_fk">
+          <End Role="drzi" Type="Self.drzi" Multiplicity="1" />
+          <End Role="odgovara" Type="Self.odgovara" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="drzi">
+              <PropertyRef Name="hotel_idhotel" />
+              <PropertyRef Name="vlasnik_mbr" />
+            </Principal>
+            <Dependent Role="odgovara">
+              <PropertyRef Name="drzi_hotel_idhotel" />
+              <PropertyRef Name="drzi_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odgovara_menadzer_fk">
+          <End Role="menadzer" Type="Self.menadzer" Multiplicity="1" />
+          <End Role="odgovara" Type="Self.odgovara" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="menadzer">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="odgovara">
+              <PropertyRef Name="menadzer_jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odseda_gost_fk">
+          <End Role="gost" Type="Self.gost" Multiplicity="1" />
+          <End Role="odseda" Type="Self.odseda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gost">
+              <PropertyRef Name="jmbg" />
+            </Principal>
+            <Dependent Role="odseda">
+              <PropertyRef Name="gost_jmbg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odseda_soba_fk">
+          <End Role="soba" Type="Self.soba" Multiplicity="1" />
+          <End Role="odseda" Type="Self.odseda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soba">
+              <PropertyRef Name="broj" />
+              <PropertyRef Name="hotel_idhotel" />
+            </Principal>
+            <Dependent Role="odseda">
+              <PropertyRef Name="soba_broj" />
+              <PropertyRef Name="soba_hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="radi_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="1" />
+          <End Role="radi" Type="Self.radi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="radi">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="radi_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="radi" Type="Self.radi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="radi">
+              <PropertyRef Name="radnik_jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recepcionar_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="recepcionar" Type="Self.recepcionar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="recepcionar">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="restoran_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
+          <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="restoran">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="soba_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="1" />
+          <End Role="soba" Type="Self.soba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="soba">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spremacica_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="spremacica" Type="Self.spremacica" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="spremacica">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Function1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="ime_hotela" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Procedura" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Mbr" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="E31032014ProjekatModelStoreContainer">
+          <EntitySet Name="Audit" EntityType="Self.Audit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="cisti" EntityType="Self.cisti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="drzi" EntityType="Self.drzi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gost" EntityType="Self.gost" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="hotel" EntityType="Self.hotel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="izdaje" EntityType="Self.izdaje" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="konobar" EntityType="Self.konobar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="menadzer" EntityType="Self.menadzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odgovara" EntityType="Self.odgovara" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="odseda" EntityType="Self.odseda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="radi" EntityType="Self.radi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="radnik" EntityType="Self.radnik" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="recepcionar" EntityType="Self.recepcionar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="restoran" EntityType="Self.restoran" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="soba" EntityType="Self.soba" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="spremacica" EntityType="Self.spremacica" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vlasnik" EntityType="Self.vlasnik" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="cisti_soba_fk" Association="Self.cisti_soba_fk">
+            <End Role="soba" EntitySet="soba" />
+            <End Role="cisti" EntitySet="cisti" />
+          </AssociationSet>
+          <AssociationSet Name="cisti_spremacica_fk" Association="Self.cisti_spremacica_fk">
+            <End Role="spremacica" EntitySet="spremacica" />
+            <End Role="cisti" EntitySet="cisti" />
+          </AssociationSet>
+          <AssociationSet Name="drzi_hotel_fk" Association="Self.drzi_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="drzi" EntitySet="drzi" />
+          </AssociationSet>
+          <AssociationSet Name="drzi_vlasnik_fk" Association="Self.drzi_vlasnik_fk">
+            <End Role="vlasnik" EntitySet="vlasnik" />
+            <End Role="drzi" EntitySet="drzi" />
+          </AssociationSet>
+          <AssociationSet Name="izdaje_odseda_fk" Association="Self.izdaje_odseda_fk">
+            <End Role="odseda" EntitySet="odseda" />
+            <End Role="izdaje" EntitySet="izdaje" />
+          </AssociationSet>
+          <AssociationSet Name="izdaje_recepcionar_fk" Association="Self.izdaje_recepcionar_fk">
+            <End Role="recepcionar" EntitySet="recepcionar" />
+            <End Role="izdaje" EntitySet="izdaje" />
+          </AssociationSet>
+          <AssociationSet Name="konobar_radnik_fk" Association="Self.konobar_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="konobar" EntitySet="konobar" />
+          </AssociationSet>
+          <AssociationSet Name="konobar_restoran_fk" Association="Self.konobar_restoran_fk">
+            <End Role="restoran" EntitySet="restoran" />
+            <End Role="konobar" EntitySet="konobar" />
+          </AssociationSet>
+          <AssociationSet Name="menadzer_radnik_fk" Association="Self.menadzer_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="menadzer" EntitySet="menadzer" />
+          </AssociationSet>
+          <AssociationSet Name="odgovara_drzi_fk" Association="Self.odgovara_drzi_fk">
+            <End Role="drzi" EntitySet="drzi" />
+            <End Role="odgovara" EntitySet="odgovara" />
+          </AssociationSet>
+          <AssociationSet Name="odgovara_menadzer_fk" Association="Self.odgovara_menadzer_fk">
+            <End Role="menadzer" EntitySet="menadzer" />
+            <End Role="odgovara" EntitySet="odgovara" />
+          </AssociationSet>
+          <AssociationSet Name="odseda_gost_fk" Association="Self.odseda_gost_fk">
+            <End Role="gost" EntitySet="gost" />
+            <End Role="odseda" EntitySet="odseda" />
+          </AssociationSet>
+          <AssociationSet Name="odseda_soba_fk" Association="Self.odseda_soba_fk">
+            <End Role="soba" EntitySet="soba" />
+            <End Role="odseda" EntitySet="odseda" />
+          </AssociationSet>
+          <AssociationSet Name="radi_hotel_fk" Association="Self.radi_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="radi" EntitySet="radi" />
+          </AssociationSet>
+          <AssociationSet Name="radi_radnik_fk" Association="Self.radi_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="radi" EntitySet="radi" />
+          </AssociationSet>
+          <AssociationSet Name="recepcionar_radnik_fk" Association="Self.recepcionar_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="recepcionar" EntitySet="recepcionar" />
+          </AssociationSet>
+          <AssociationSet Name="restoran_hotel_fk" Association="Self.restoran_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="restoran" EntitySet="restoran" />
+          </AssociationSet>
+          <AssociationSet Name="soba_hotel_fk" Association="Self.soba_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="soba" EntitySet="soba" />
+          </AssociationSet>
+          <AssociationSet Name="spremacica_radnik_fk" Association="Self.spremacica_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="spremacica" EntitySet="spremacica" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="E31032014ProjekatModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="drzi">
+          <Key>
+            <PropertyRef Name="hotel_idhotel" />
+            <PropertyRef Name="vlasnik_mbr" />
+          </Key>
+          <Property Name="hotel_idhotel" Type="Int32" Nullable="false" />
+          <Property Name="vlasnik_mbr" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="hotel" Relationship="Self.drzi_hotel_fk" FromRole="drzi" ToRole="hotel" />
+          <NavigationProperty Name="vlasnik" Relationship="Self.drzi_vlasnik_fk" FromRole="drzi" ToRole="vlasnik" />
+          <NavigationProperty Name="menadzer" Relationship="Self.odgovara" FromRole="drzi" ToRole="menadzer" />
+        </EntityType>
+        <EntityType Name="gost">
+          <Key>
+            <PropertyRef Name="jmbg" />
+          </Key>
+          <Property Name="jmbg" Type="Int32" Nullable="false" />
+          <Property Name="ime_gosta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime_gosta" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="odseda" Relationship="Self.odseda_gost_fk" FromRole="gost" ToRole="odseda" />
+        </EntityType>
+        <EntityType Name="hotel">
+          <Key>
+            <PropertyRef Name="idhotel" />
+          </Key>
+          <Property Name="idhotel" Type="Int32" Nullable="false" />
+          <Property Name="naziv" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mesto" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="drzi" Relationship="Self.drzi_hotel_fk" FromRole="hotel" ToRole="drzi" />
+          <NavigationProperty Name="restoran" Relationship="Self.restoran_hotel_fk" FromRole="hotel" ToRole="restoran" />
+          <NavigationProperty Name="soba" Relationship="Self.soba_hotel_fk" FromRole="hotel" ToRole="soba" />
+          <NavigationProperty Name="radnik" Relationship="Self.radi" FromRole="hotel" ToRole="radnik" />
+        </EntityType>
+        <EntityType Name="konobar">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="restoran_idrest" Type="Int32" />
+          <Property Name="godine_iskustva" Type="Int32" />
+          <NavigationProperty Name="radnik" Relationship="Self.konobar_radnik_fk" FromRole="konobar" ToRole="radnik" />
+          <NavigationProperty Name="restoran" Relationship="Self.konobar_restoran_fk" FromRole="konobar" ToRole="restoran" />
+        </EntityType>
+        <EntityType Name="menadzer">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tip" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="radnik" Relationship="Self.menadzer_radnik_fk" FromRole="menadzer" ToRole="radnik" />
+          <NavigationProperty Name="drzi" Relationship="Self.odgovara" FromRole="menadzer" ToRole="drzi" />
+        </EntityType>
+        <EntityType Name="odseda">
+          <Key>
+            <PropertyRef Name="gost_jmbg" />
+            <PropertyRef Name="soba_broj" />
+            <PropertyRef Name="soba_hotel_idhotel" />
+          </Key>
+          <Property Name="gost_jmbg" Type="Int32" Nullable="false" />
+          <Property Name="soba_broj" Type="Int32" Nullable="false" />
+          <Property Name="soba_hotel_idhotel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="gost" Relationship="Self.odseda_gost_fk" FromRole="odseda" ToRole="gost" />
+          <NavigationProperty Name="soba" Relationship="Self.odseda_soba_fk" FromRole="odseda" ToRole="soba" />
+          <NavigationProperty Name="recepcionar" Relationship="Self.izdaje" FromRole="odseda" ToRole="recepcionar" />
+        </EntityType>
+        <EntityType Name="radnik">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ime_radnika" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime_radnika" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="konobar" Relationship="Self.konobar_radnik_fk" FromRole="radnik" ToRole="konobar" />
+          <NavigationProperty Name="menadzer" Relationship="Self.menadzer_radnik_fk" FromRole="radnik" ToRole="menadzer" />
+          <NavigationProperty Name="recepcionar" Relationship="Self.recepcionar_radnik_fk" FromRole="radnik" ToRole="recepcionar" />
+          <NavigationProperty Name="spremacica" Relationship="Self.spremacica_radnik_fk" FromRole="radnik" ToRole="spremacica" />
+          <NavigationProperty Name="hotel" Relationship="Self.radi" FromRole="radnik" ToRole="hotel" />
+        </EntityType>
+        <EntityType Name="recepcionar">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ima_racunar" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="radnik" Relationship="Self.recepcionar_radnik_fk" FromRole="recepcionar" ToRole="radnik" />
+          <NavigationProperty Name="odseda" Relationship="Self.izdaje" FromRole="recepcionar" ToRole="odseda" />
+        </EntityType>
+        <EntityType Name="restoran">
+          <Key>
+            <PropertyRef Name="idrest" />
+          </Key>
+          <Property Name="idrest" Type="Int32" Nullable="false" />
+          <Property Name="nazivrestorana" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="hotel_idhotel" Type="Int32" />
+          <NavigationProperty Name="hotel" Relationship="Self.restoran_hotel_fk" FromRole="restoran" ToRole="hotel" />
+          <NavigationProperty Name="konobar" Relationship="Self.konobar_restoran_fk" FromRole="restoran" ToRole="konobar" />
+        </EntityType>
+        <EntityType Name="soba">
+          <Key>
+            <PropertyRef Name="broj" />
+            <PropertyRef Name="hotel_idhotel" />
+          </Key>
+          <Property Name="broj" Type="Int32" Nullable="false" />
+          <Property Name="sprat" Type="Int32" />
+          <Property Name="hotel_idhotel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="hotel" Relationship="Self.soba_hotel_fk" FromRole="soba" ToRole="hotel" />
+          <NavigationProperty Name="odseda" Relationship="Self.odseda_soba_fk" FromRole="soba" ToRole="odseda" />
+          <NavigationProperty Name="spremacica" Relationship="Self.cisti" FromRole="soba" ToRole="spremacica" />
+        </EntityType>
+        <EntityType Name="spremacica">
+          <Key>
+            <PropertyRef Name="jmbgradnika" />
+          </Key>
+          <Property Name="jmbgradnika" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ima_opremu" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="radnik" Relationship="Self.spremacica_radnik_fk" FromRole="spremacica" ToRole="radnik" />
+          <NavigationProperty Name="soba" Relationship="Self.cisti" FromRole="spremacica" ToRole="soba" />
+        </EntityType>
+        <EntityType Name="vlasnik">
+          <Key>
+            <PropertyRef Name="mbr" />
+          </Key>
+          <Property Name="mbr" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ime_vlasnika" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prezime_vlasnika" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="drzi" Relationship="Self.drzi_vlasnik_fk" FromRole="vlasnik" ToRole="drzi" />
+        </EntityType>
+        <Association Name="drzi_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="1" />
+          <End Role="drzi" Type="Self.drzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="drzi">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="drzi_vlasnik_fk">
+          <End Role="vlasnik" Type="Self.vlasnik" Multiplicity="1" />
+          <End Role="drzi" Type="Self.drzi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="vlasnik">
+              <PropertyRef Name="mbr" />
+            </Principal>
+            <Dependent Role="drzi">
+              <PropertyRef Name="vlasnik_mbr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odseda_gost_fk">
+          <End Role="gost" Type="Self.gost" Multiplicity="1" />
+          <End Role="odseda" Type="Self.odseda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gost">
+              <PropertyRef Name="jmbg" />
+            </Principal>
+            <Dependent Role="odseda">
+              <PropertyRef Name="gost_jmbg" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="restoran_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="0..1" />
+          <End Role="restoran" Type="Self.restoran" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="restoran">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="soba_hotel_fk">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="1" />
+          <End Role="soba" Type="Self.soba" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="hotel">
+              <PropertyRef Name="idhotel" />
+            </Principal>
+            <Dependent Role="soba">
+              <PropertyRef Name="hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="konobar_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="konobar" Type="Self.konobar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="konobar">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="konobar_restoran_fk">
+          <End Role="restoran" Type="Self.restoran" Multiplicity="0..1" />
+          <End Role="konobar" Type="Self.konobar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="restoran">
+              <PropertyRef Name="idrest" />
+            </Principal>
+            <Dependent Role="konobar">
+              <PropertyRef Name="restoran_idrest" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="menadzer_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="menadzer" Type="Self.menadzer" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="menadzer">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="odseda_soba_fk">
+          <End Role="soba" Type="Self.soba" Multiplicity="1" />
+          <End Role="odseda" Type="Self.odseda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="soba">
+              <PropertyRef Name="broj" />
+              <PropertyRef Name="hotel_idhotel" />
+            </Principal>
+            <Dependent Role="odseda">
+              <PropertyRef Name="soba_broj" />
+              <PropertyRef Name="soba_hotel_idhotel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="recepcionar_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="recepcionar" Type="Self.recepcionar" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="recepcionar">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spremacica_radnik_fk">
+          <End Role="radnik" Type="Self.radnik" Multiplicity="1" />
+          <End Role="spremacica" Type="Self.spremacica" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="radnik">
+              <PropertyRef Name="jmbgradnika" />
+            </Principal>
+            <Dependent Role="spremacica">
+              <PropertyRef Name="jmbgradnika" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="cisti">
+          <End Role="soba" Type="Self.soba" Multiplicity="*" />
+          <End Role="spremacica" Type="Self.spremacica" Multiplicity="*" />
+        </Association>
+        <Association Name="izdaje">
+          <End Role="odseda" Type="Self.odseda" Multiplicity="*" />
+          <End Role="recepcionar" Type="Self.recepcionar" Multiplicity="*" />
+        </Association>
+        <Association Name="odgovara">
+          <End Role="drzi" Type="Self.drzi" Multiplicity="*" />
+          <End Role="menadzer" Type="Self.menadzer" Multiplicity="*" />
+        </Association>
+        <Association Name="radi">
+          <End Role="hotel" Type="Self.hotel" Multiplicity="*" />
+          <End Role="radnik" Type="Self.radnik" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="E31032014ProjekatEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="drzi" EntityType="Self.drzi" />
+          <EntitySet Name="gost" EntityType="Self.gost" />
+          <EntitySet Name="hotel" EntityType="Self.hotel" />
+          <EntitySet Name="konobar" EntityType="Self.konobar" />
+          <EntitySet Name="menadzer" EntityType="Self.menadzer" />
+          <EntitySet Name="odseda" EntityType="Self.odseda" />
+          <EntitySet Name="radnik" EntityType="Self.radnik" />
+          <EntitySet Name="recepcionar" EntityType="Self.recepcionar" />
+          <EntitySet Name="restoran" EntityType="Self.restoran" />
+          <EntitySet Name="soba" EntityType="Self.soba" />
+          <EntitySet Name="spremacica" EntityType="Self.spremacica" />
+          <EntitySet Name="vlasnik" EntityType="Self.vlasnik" />
+          <AssociationSet Name="drzi_hotel_fk" Association="Self.drzi_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="drzi" EntitySet="drzi" />
+          </AssociationSet>
+          <AssociationSet Name="drzi_vlasnik_fk" Association="Self.drzi_vlasnik_fk">
+            <End Role="vlasnik" EntitySet="vlasnik" />
+            <End Role="drzi" EntitySet="drzi" />
+          </AssociationSet>
+          <AssociationSet Name="odseda_gost_fk" Association="Self.odseda_gost_fk">
+            <End Role="gost" EntitySet="gost" />
+            <End Role="odseda" EntitySet="odseda" />
+          </AssociationSet>
+          <AssociationSet Name="restoran_hotel_fk" Association="Self.restoran_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="restoran" EntitySet="restoran" />
+          </AssociationSet>
+          <AssociationSet Name="soba_hotel_fk" Association="Self.soba_hotel_fk">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="soba" EntitySet="soba" />
+          </AssociationSet>
+          <AssociationSet Name="konobar_radnik_fk" Association="Self.konobar_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="konobar" EntitySet="konobar" />
+          </AssociationSet>
+          <AssociationSet Name="konobar_restoran_fk" Association="Self.konobar_restoran_fk">
+            <End Role="restoran" EntitySet="restoran" />
+            <End Role="konobar" EntitySet="konobar" />
+          </AssociationSet>
+          <AssociationSet Name="menadzer_radnik_fk" Association="Self.menadzer_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="menadzer" EntitySet="menadzer" />
+          </AssociationSet>
+          <AssociationSet Name="odseda_soba_fk" Association="Self.odseda_soba_fk">
+            <End Role="soba" EntitySet="soba" />
+            <End Role="odseda" EntitySet="odseda" />
+          </AssociationSet>
+          <AssociationSet Name="recepcionar_radnik_fk" Association="Self.recepcionar_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="recepcionar" EntitySet="recepcionar" />
+          </AssociationSet>
+          <AssociationSet Name="spremacica_radnik_fk" Association="Self.spremacica_radnik_fk">
+            <End Role="radnik" EntitySet="radnik" />
+            <End Role="spremacica" EntitySet="spremacica" />
+          </AssociationSet>
+          <AssociationSet Name="cisti" Association="Self.cisti">
+            <End Role="soba" EntitySet="soba" />
+            <End Role="spremacica" EntitySet="spremacica" />
+          </AssociationSet>
+          <AssociationSet Name="izdaje" Association="Self.izdaje">
+            <End Role="odseda" EntitySet="odseda" />
+            <End Role="recepcionar" EntitySet="recepcionar" />
+          </AssociationSet>
+          <AssociationSet Name="odgovara" Association="Self.odgovara">
+            <End Role="drzi" EntitySet="drzi" />
+            <End Role="menadzer" EntitySet="menadzer" />
+          </AssociationSet>
+          <AssociationSet Name="radi" Association="Self.radi">
+            <End Role="hotel" EntitySet="hotel" />
+            <End Role="radnik" EntitySet="radnik" />
+          </AssociationSet>
+          <EntitySet Name="Audit" EntityType="E31032014ProjekatModel.Audit" />
+          <FunctionImport Name="Procedura">
+            <Parameter Name="Mbr" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Audit">
+          <Key>
+            <PropertyRef Name="Jmbg" />
+          </Key>
+          <Property Name="Jmbg" Type="Int32" Nullable="false" />
+          <Property Name="Ime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Prezime" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="E31032014ProjekatModelStoreContainer" CdmEntityContainer="E31032014ProjekatEntities">
+          <EntitySetMapping Name="drzi">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.drzi">
+              <MappingFragment StoreEntitySet="drzi">
+                <ScalarProperty Name="hotel_idhotel" ColumnName="hotel_idhotel" />
+                <ScalarProperty Name="vlasnik_mbr" ColumnName="vlasnik_mbr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gost">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.gost">
+              <MappingFragment StoreEntitySet="gost">
+                <ScalarProperty Name="jmbg" ColumnName="jmbg" />
+                <ScalarProperty Name="ime_gosta" ColumnName="ime_gosta" />
+                <ScalarProperty Name="prezime_gosta" ColumnName="prezime_gosta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="hotel">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.hotel">
+              <MappingFragment StoreEntitySet="hotel">
+                <ScalarProperty Name="idhotel" ColumnName="idhotel" />
+                <ScalarProperty Name="naziv" ColumnName="naziv" />
+                <ScalarProperty Name="mesto" ColumnName="mesto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="konobar">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.konobar">
+              <MappingFragment StoreEntitySet="konobar">
+                <ScalarProperty Name="jmbgradnika" ColumnName="jmbgradnika" />
+                <ScalarProperty Name="restoran_idrest" ColumnName="restoran_idrest" />
+                <ScalarProperty Name="godine_iskustva" ColumnName="godine_iskustva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="menadzer">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.menadzer">
+              <MappingFragment StoreEntitySet="menadzer">
+                <ScalarProperty Name="jmbgradnika" ColumnName="jmbgradnika" />
+                <ScalarProperty Name="tip" ColumnName="tip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="odseda">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.odseda">
+              <MappingFragment StoreEntitySet="odseda">
+                <ScalarProperty Name="gost_jmbg" ColumnName="gost_jmbg" />
+                <ScalarProperty Name="soba_broj" ColumnName="soba_broj" />
+                <ScalarProperty Name="soba_hotel_idhotel" ColumnName="soba_hotel_idhotel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="radnik">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.radnik">
+              <MappingFragment StoreEntitySet="radnik">
+                <ScalarProperty Name="jmbgradnika" ColumnName="jmbgradnika" />
+                <ScalarProperty Name="ime_radnika" ColumnName="ime_radnika" />
+                <ScalarProperty Name="prezime_radnika" ColumnName="prezime_radnika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="recepcionar">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.recepcionar">
+              <MappingFragment StoreEntitySet="recepcionar">
+                <ScalarProperty Name="jmbgradnika" ColumnName="jmbgradnika" />
+                <ScalarProperty Name="ima_racunar" ColumnName="ima_racunar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="restoran">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.restoran">
+              <MappingFragment StoreEntitySet="restoran">
+                <ScalarProperty Name="idrest" ColumnName="idrest" />
+                <ScalarProperty Name="nazivrestorana" ColumnName="nazivrestorana" />
+                <ScalarProperty Name="hotel_idhotel" ColumnName="hotel_idhotel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="soba">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.soba">
+              <MappingFragment StoreEntitySet="soba">
+                <ScalarProperty Name="broj" ColumnName="broj" />
+                <ScalarProperty Name="sprat" ColumnName="sprat" />
+                <ScalarProperty Name="hotel_idhotel" ColumnName="hotel_idhotel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="spremacica">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.spremacica">
+              <MappingFragment StoreEntitySet="spremacica">
+                <ScalarProperty Name="jmbgradnika" ColumnName="jmbgradnika" />
+                <ScalarProperty Name="ima_opremu" ColumnName="ima_opremu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vlasnik">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.vlasnik">
+              <MappingFragment StoreEntitySet="vlasnik">
+                <ScalarProperty Name="mbr" ColumnName="mbr" />
+                <ScalarProperty Name="ime_vlasnika" ColumnName="ime_vlasnika" />
+                <ScalarProperty Name="prezime_vlasnika" ColumnName="prezime_vlasnika" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="cisti" TypeName="E31032014ProjekatModel.cisti" StoreEntitySet="cisti">
+            <EndProperty Name="soba">
+              <ScalarProperty Name="broj" ColumnName="soba_broj" />
+              <ScalarProperty Name="hotel_idhotel" ColumnName="soba_idhotel" />
+            </EndProperty>
+            <EndProperty Name="spremacica">
+              <ScalarProperty Name="jmbgradnika" ColumnName="spremacica_jmbgradnika" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="izdaje" TypeName="E31032014ProjekatModel.izdaje" StoreEntitySet="izdaje">
+            <EndProperty Name="odseda">
+              <ScalarProperty Name="gost_jmbg" ColumnName="odseda_gost_jmbg" />
+              <ScalarProperty Name="soba_broj" ColumnName="odseda_broj" />
+              <ScalarProperty Name="soba_hotel_idhotel" ColumnName="odseda_idhotel" />
+            </EndProperty>
+            <EndProperty Name="recepcionar">
+              <ScalarProperty Name="jmbgradnika" ColumnName="recepcionar_jmbgradnika" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="odgovara" TypeName="E31032014ProjekatModel.odgovara" StoreEntitySet="odgovara">
+            <EndProperty Name="drzi">
+              <ScalarProperty Name="hotel_idhotel" ColumnName="drzi_hotel_idhotel" />
+              <ScalarProperty Name="vlasnik_mbr" ColumnName="drzi_mbr" />
+            </EndProperty>
+            <EndProperty Name="menadzer">
+              <ScalarProperty Name="jmbgradnika" ColumnName="menadzer_jmbgradnika" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="radi" TypeName="E31032014ProjekatModel.radi" StoreEntitySet="radi">
+            <EndProperty Name="hotel">
+              <ScalarProperty Name="idhotel" ColumnName="hotel_idhotel" />
+            </EndProperty>
+            <EndProperty Name="radnik">
+              <ScalarProperty Name="jmbgradnika" ColumnName="radnik_jmbgradnika" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Audit">
+            <EntityTypeMapping TypeName="E31032014ProjekatModel.Audit">
+              <MappingFragment StoreEntitySet="Audit">
+                <ScalarProperty Name="Prezime" ColumnName="Prezime" />
+                <ScalarProperty Name="Ime" ColumnName="Ime" />
+                <ScalarProperty Name="Jmbg" ColumnName="Jmbg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Procedura" FunctionName="E31032014ProjekatModel.Store.Procedura" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
